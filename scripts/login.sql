@@ -1,0 +1,7 @@
+CREATE USER 'admin' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'admin';
+FLUSH PRIVILEGES;
+CREATE DATABASE login;
+USE login;
+CREATE TABLE user(email varchar(60) NOT NULL PRIMARY KEY UNIQUE,
+    password varchar(60) NOT NULL);
