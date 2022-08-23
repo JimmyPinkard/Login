@@ -62,4 +62,15 @@ public class UserController
     {
         return userService.deleteUser(body);
     }
+
+    /**
+     *HTTP Request to login
+     * @param body request body
+     * @return user
+     */
+    @PostMapping("/login")
+    public User login(@RequestBody final Map<String, Object> body)
+    {
+        return userService.login(body);
+    }
 }

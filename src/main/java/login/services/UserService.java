@@ -56,7 +56,7 @@ public class UserService
     public User getUser(final Map<String, Object> body)
     {
         User user = userRepository.findById((String) body.get("email")).orElse(null);
-        if(user == null || !passwordEncoder.matches((String)body.get("password"), user.getPassword()))
+        if(user == null)
         {
             return null;
         }
@@ -71,12 +71,28 @@ public class UserService
      */
     public User deleteUser(final Map<String, Object> body)
     {
-        User user = getUser(body);
+        User user = login(body);
         if(user == null)
         {
             return null;
         }
         userRepository.delete(user);
+        return user;
+    }
+
+    /**
+     * Gets a user and checks password
+     * @param body request body
+     * @return found user
+     */
+    public User login(final Map<String, Object> body)
+    {
+        User user = userRepository.findById((String) body.get("email")).orElse(null);
+        if(user == null || !passwordEncoder.matches((String)body.get("password"), user.getPassword()))
+        {
+            return null;
+        }
+        user.setPassword("");
         return user;
     }
 }

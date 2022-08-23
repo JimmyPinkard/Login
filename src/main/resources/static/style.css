@@ -1,0 +1,27 @@
+#message
+{
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+}
+
+.container
+{
+    display: flex;
+    justify-content: center;
+}
+
+.login-form
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    vertical-align: top;
+    background-color: mediumpurple;
+    padding: 1rem;
+}
+
+.form-item
+{
+    margin-bottom: 1rem;
+}

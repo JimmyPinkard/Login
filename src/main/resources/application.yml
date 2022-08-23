@@ -1,0 +1,34 @@
+# Database
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/login?createDatabaseIfNotExist=true
+    username: ${mysql_user}
+    password: ${mysql_password}
+  jpa:
+    show-sql: true
+    database: mysql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        ddl-auto: none
+
+  # Email
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${email}
+    password: ${email_password}
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+  thymeleaf.mode: HTML
+
+#HTTPS
+server:
+  port: 8080
+  ssl:
+    key-store: ${keystore}
+    key-store-password: ${keystore_password}
+    key-store-type: ${keystore_key_type}
+    key-alias: ${keystore_key_alias}
+    key-password: ${keystore_key_password}

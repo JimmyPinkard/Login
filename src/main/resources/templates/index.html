@@ -3,43 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}" type="text/css"/>
+    <script src="../static/script.js" th:src="@{/script.js}" type="text/javascript" defer></script>
 </head>
 <body>
-<h1 id="message">Hello</h1>
-<form id="login-form">
-    <label>email:<input type="text" id="email" name="email"/></label><br/>
-    <label>password:<input type="password" id="password" name="password"/></label><br/>
-    <button type="button" id="submit" onclick="login()">Submit</button>
-</form>
+    <h1 id="message">Hello</h1>
+    <div class="container">
+        <form id="login-form" class="login-form">
+            <label>email: <input type="text" id="email" class="form-item" name="email"/></label><br/>
+            <label>password: <input type="password" id="password" class="form-item" name="password"/></label><br/>
+            <button type="button" id="submit" class="form-item" onclick="login()">Submit</button>
+        </form>
+    </div>
 </body>
-
-<script defer>
-    function login()
-    {
-        const body = {
-            email: document.getElementById("email").value,
-            password: document.getElementById("password").value
-        }
-        request("/users/add", body);
-        request("/users/get", body);
-        request("/users/delete", body);
-        //request("/email/send", body);
-
-        document.getElementById("message").innerText = "Email sent";
-        document.getElementById("login-form").hidden = true;
-    }
-
-    function request(endpoint, body)
-    {
-        fetch("http://localhost:8080" + endpoint,
-            {
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                cors: "enable",
-                method: "POST",
-                body: JSON.stringify(body)
-            }).then(res => res.json()).then(json => console.log(json));
-    }
-</script>
 </html>
